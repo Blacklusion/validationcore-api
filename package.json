@@ -1,0 +1,33 @@
+{
+  "name": "template-typescript",
+  "version": "1.0.0",
+  "license": "MPL-2.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "devDependencies": {
+    "typescript": "^4.0.3",
+    "prettier": "2.1.1",
+    "eslint": "^7.9.0",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.11.0",
+    "ts-node": "3.3.0"
+  },
+  "dependencies": {
+    "tslog": "^2.8.0"
+  },
+  "keywords": [
+    "Leonard Scheidemantel"
+  ],
+  "main": "src/index.ts",
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint . --ext .ts --fix",
+    "start": "node build/index.js",
+    "ts-start": "ts-node src/index.ts"
+  }
+}
