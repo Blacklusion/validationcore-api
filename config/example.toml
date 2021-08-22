@@ -9,3 +9,5 @@
     postgres_user = 'user'
     postgres_password = 'password'
     postgres_db = 'database_name'
+
+[localization]
