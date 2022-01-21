@@ -1,9 +1,9 @@
 import { logger } from "./validationcore-database-scheme/common";
 import * as express from "express";
-import { ApolloServer, gql } from "apollo-server-express";
-import { resolvers } from "./resolvers";
-import { typeDefs } from "./schemas";
-import { DatabaseConnector } from "./datasources/DatabaseConnector";
+import { ApolloServer } from "apollo-server-express";
+import { resolvers } from "./graphql/resolvers";
+import { typeDefs } from "./graphql/schemas";
+import { DatabaseConnector } from "./datasources/postgres/DatabaseConnector";
 
 /**
  * Starts the API as Express server
@@ -13,18 +13,12 @@ export function start(): void {
   const app = express();
   const port = 8080;
 
-  /*
-  // Default Route: All requests that don't match a route will be handled here
-  app.use(function (req, res) {
-    res.status(404).send("Invalid route.");
-  });
-
-   */
-
   // Apollo configuration
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    introspection: true,
+    playground: true,
     dataSources: () => ({
       databaseConnector: new DatabaseConnector(),
     }),

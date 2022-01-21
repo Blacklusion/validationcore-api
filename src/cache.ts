@@ -1,17 +1,25 @@
-import { chainsConfig } from "./validationcore-database-scheme/common";
-import { DatabaseConnector } from "./datasources/DatabaseConnector";
+import { logger } from "./validationcore-database-scheme/common";
+import { DatabaseConnector } from "./datasources/postgres/DatabaseConnector";
 
-export const guildCache = [];
+export let guildListCache: unknown;
 
-export function start() {
-  updateGuildCache();
+/**
+ * Starts the cache
+ */
+export function start(): void {
+  logger.info("Started cache!");
 
-  setInterval(updateGuildCache, 60000);
+  /**
+   * GuildList Cache
+   */
+  updateGuildListCache().then(() => logger.info("[Cache] Update GuildList"));
+  setInterval(updateGuildListCache, 60000);
 }
 
-function updateGuildCache() {
-  for (const chainId in chainsConfig) {
-    if (chainId)
-      guildCache[chainId] = new DatabaseConnector().generateGuildList(chainsConfig[chainId].name);
-  }
+/**
+ * Updates the GuildListCache for all chains
+ */
+async function updateGuildListCache() {
+  const databaseConnector = new DatabaseConnector();
+      guildListCache = await databaseConnector.generateGuildList();
 }

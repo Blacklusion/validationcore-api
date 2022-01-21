@@ -1,7 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToOne, JoinColumn } from "typeorm";
 import { HttpErrorType } from "../enum/HttpErrorType";
 import { ValidationLevel } from "../enum/ValidationLevel";
-import { validationConfig } from "../common";
 
 /**
  * Stores the validation results of an NodeApi validation
@@ -10,6 +9,9 @@ import { validationConfig } from "../common";
 export class NodeApi {
   @PrimaryGeneratedColumn("uuid")
   id: string;
+
+  @Column({ type: "smallint", nullable: false })
+  instance_id: number;
 
   @Column({ length: 12 })
   guild: string;
@@ -23,11 +25,19 @@ export class NodeApi {
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   location_ok: ValidationLevel;
 
+  @Column({ type: "decimal", precision: 9, scale: 6, nullable: true })
+  location_longitude: number;
+
+  @Column({ type: "decimal", precision: 8, scale: 6,  nullable: true })
+  location_latitude: number;
+
   @Column({ nullable: false })
   endpoint_url: string;
 
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   endpoint_url_ok: ValidationLevel;
+
+
 
   @Column({ default: false })
   is_ssl: boolean;
@@ -37,6 +47,8 @@ export class NodeApi {
 
   @Column({ type: "enum", enum: HttpErrorType, default: HttpErrorType.UNKNOWN })
   ssl_errortype: HttpErrorType;
+
+
 
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   get_info_ok: ValidationLevel;
@@ -49,6 +61,8 @@ export class NodeApi {
 
   @Column({ type: "enum", enum: HttpErrorType, default: HttpErrorType.UNKNOWN })
   get_info_errortype: HttpErrorType;
+
+
 
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   server_version_ok: ValidationLevel;
@@ -65,6 +79,8 @@ export class NodeApi {
   @Column({ type: "bigint", nullable: true })
   head_block_delta_ms: number;
 
+
+
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   block_one_ok: ValidationLevel;
 
@@ -76,6 +92,8 @@ export class NodeApi {
 
   @Column({ type: "enum", enum: HttpErrorType, default: HttpErrorType.UNKNOWN })
   block_one_errortype: HttpErrorType;
+
+
 
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   verbose_error_ok: ValidationLevel;
@@ -89,6 +107,8 @@ export class NodeApi {
   @Column({ type: "enum", enum: HttpErrorType, default: HttpErrorType.UNKNOWN })
   verbose_error_errortype: HttpErrorType;
 
+
+
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   abi_serializer_ok: ValidationLevel;
 
@@ -100,6 +120,8 @@ export class NodeApi {
 
   @Column({ type: "enum", enum: HttpErrorType, default: HttpErrorType.UNKNOWN })
   abi_serializer_errortype: HttpErrorType;
+
+
 
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   basic_symbol_ok: ValidationLevel;
@@ -113,6 +135,8 @@ export class NodeApi {
   @Column({ type: "enum", enum: HttpErrorType, default: HttpErrorType.UNKNOWN })
   basic_symbol_errortype: HttpErrorType;
 
+
+
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   producer_api_off: ValidationLevel;
 
@@ -125,6 +149,8 @@ export class NodeApi {
   @Column({ type: "enum", enum: HttpErrorType, default: HttpErrorType.UNKNOWN })
   producer_api_errortype: HttpErrorType;
 
+
+
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   db_size_api_off: ValidationLevel;
 
@@ -136,6 +162,8 @@ export class NodeApi {
 
   @Column({ type: "enum", enum: HttpErrorType, default: HttpErrorType.UNKNOWN })
   db_size_api_errortype: HttpErrorType;
+
+
 
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   net_api_off: ValidationLevel;

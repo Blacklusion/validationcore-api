@@ -17,13 +17,15 @@ export class Validation {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
+  @Column({ type: "smallint", nullable: false })
+  instance_id: number;
+
   @Column({ length: 12 })
-  guild: String;
+  guild: string;
 
   @CreateDateColumn()
   validation_date: Date;
 
-  //todo: add validation to code
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.ERROR })
   all_checks_ok: ValidationLevel;
 
@@ -33,7 +35,8 @@ export class Validation {
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   reg_location_ok: ValidationLevel;
 
-  // todo: implement
+
+
   @Column({ nullable: true })
   reg_website_url: string;
 
@@ -43,11 +46,13 @@ export class Validation {
   @Column({ type: "smallint", nullable: true })
   reg_website_ms: number;
 
-  @Column({ type: "smallint",  nullable: true })
+  @Column({ type: "smallint", nullable: true })
   reg_website_httpcode: number;
 
   @Column({ type: "enum", enum: HttpErrorType, default: HttpErrorType.UNKNOWN, nullable: true })
   reg_website_errortype: HttpErrorType;
+
+
 
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   chains_json_ok: ValidationLevel;
@@ -64,7 +69,8 @@ export class Validation {
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   chains_json_access_control_header_ok: ValidationLevel;
 
-  // todo: implement
+
+
   @Column({ nullable: true })
   bpjson_path: string;
 
@@ -80,6 +86,8 @@ export class Validation {
   @Column({ type: "enum", enum: HttpErrorType, default: HttpErrorType.UNKNOWN, nullable: true })
   bpjson_errortype: HttpErrorType;
 
+
+
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   bpjson_producer_account_name_ok: ValidationLevel;
 
@@ -89,7 +97,8 @@ export class Validation {
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   bpjson_candidate_name_ok: ValidationLevel;
 
-  // todo: implement
+
+
   @Column({ nullable: true })
   bpjson_website_url: string;
 
@@ -105,7 +114,8 @@ export class Validation {
   @Column({ type: "enum", enum: HttpErrorType, default: HttpErrorType.UNKNOWN, nullable: true })
   bpjson_website_errortype: HttpErrorType;
 
-  // todo: implement
+
+
   @Column({ nullable: true })
   bpjson_code_of_conduct_url: string;
 
@@ -121,7 +131,8 @@ export class Validation {
   @Column({ type: "enum", enum: HttpErrorType, default: HttpErrorType.UNKNOWN, nullable: true })
   bpjson_code_of_conduct_errortype: HttpErrorType;
 
-  // todo: implement
+
+
   @Column({ nullable: true })
   bpjson_ownership_disclosure_url: string;
 
@@ -136,6 +147,8 @@ export class Validation {
 
   @Column({ type: "enum", enum: HttpErrorType, default: HttpErrorType.UNKNOWN, nullable: true })
   bpjson_ownership_disclosure_errortype: HttpErrorType;
+
+
 
   @Column({ type: "enum", enum: ValidationLevel, default: ValidationLevel.NULL })
   bpjson_email_ok: ValidationLevel;

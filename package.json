@@ -1,5 +1,5 @@
 {
-  "name": "template-typescript",
+  "name": "validationcore-api",
   "version": "1.0.0",
   "license": "MPL-2.0",
   "description": "",
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "apollo-datasource": "^0.9.0",
+    "apollo-server-errors": "^3.2.0",
     "apollo-server-express": "^2.25.1",
     "config": "^3.3.6",
     "csv-load-sync": "^2.3.1",
@@ -33,13 +34,17 @@
     "validator": "^13.6.0"
   },
   "keywords": [
-    "Leonard Scheidemantel"
+    "Leonard Scheidemantel",
+    "blacklusion",
+    "validationcore",
+    "eosio"
   ],
   "main": "src/index.ts",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .ts --fix",
     "start": "node build/index.js",
-    "ts-start": "ts-node src/index.ts"
+    "ts-start": "ts-node src/index.ts",
+    "ts-start-wax-mainnet": "CHAIN_ID=1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4 ts-node src/index.ts"
   }
 }
